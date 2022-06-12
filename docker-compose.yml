@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  server:
+    container_name: server
+    restart: always
+    build: ./server
+    volumes:
+      - ./server:/var/www/html
+    ports:
+      - "3000:80"
+  client:
+    container_name: client
+    restart: always
+    build: ./client
+    volumes:
+      - ./client:/client
+    ports:
+      - "80:8080"
+    depends_on:
+      - server

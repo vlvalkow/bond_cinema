@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Test</title>
+    </head>
+    <body>
+        <h1>Hello World</h1>
+        <div id="bookings-container"></p>
+        <script>
+            getBookings = async () => {
+                const response = await fetch('http://localhost:3000');
+                const bookings = await response.json();
+                return bookings
+            }
+
+            getBookings().then(bookings => {
+                console.log(bookings)
+                document.getElementById('bookings-container').innerHTML = bookings.map(b => `Title: ${b.title}`).join("<br>")
+            })
+        </script>
+    </body>
+</html>
