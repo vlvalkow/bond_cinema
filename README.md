@@ -9,3 +9,7 @@ docker-compose build
 ```bash
 docker-compose up
 ```
+
+```bash
+docker exec -it server ./vendor/bin/phpunit tests/Functional/BookingsTest.php
+```
