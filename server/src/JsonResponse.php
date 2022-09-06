@@ -2,11 +2,8 @@
 
 namespace Vlvalkow\BondCinemaApi;
 
-use JetBrains\PhpStorm\Pure;
-
 class JsonResponse extends Response
 {
-    #[Pure]
     public function __construct(
         protected ?string $content = null,
         protected int $status = 200,
@@ -16,5 +13,10 @@ class JsonResponse extends Response
         ],
     ) {
         parent::__construct($content, $status, $headers);
+    }
+
+    public function getDecodedContent()
+    {
+        return json_decode($this->getContent(), true);
     }
 }

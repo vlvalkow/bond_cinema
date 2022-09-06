@@ -2,6 +2,21 @@
 
 A cinema that plays James Bond films exclusively.
 
+## API
+
+GET /bookings
+
+POST /bookings
+```
+{
+    "name": "John Doe",
+    "film": "Skyfall",
+    "datatime": "2022-10-19"
+}
+```
+
+## Installation
+
 ```bash
 docker-compose build
 ```
@@ -10,6 +25,8 @@ docker-compose build
 docker-compose up
 ```
 
+## Testing
+
 ```bash
-docker exec -it server ./vendor/bin/phpunit tests/Functional/BookingsTest.php
+docker exec server ./vendor/bin/phpunit -c phpunit.dist.xml
 ```

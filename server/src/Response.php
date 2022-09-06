@@ -11,6 +11,21 @@ class Response
     ) {
     }
 
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function getContentType()
+    {
+        return $this->getHeader('Content-Type');
+    }
+
+    public function getContent()
+    {
+        return $this->content;
+    }
+
     public function send()
     {
         http_response_code($this->status);
@@ -20,5 +35,24 @@ class Response
         }
 
         echo $this->content;
+    }
+
+    private function getHeader(string $headerName)
+    {
+        foreach ($this->headers as $header) {
+            if (strpos($header, $headerName) === false) {
+                continue;
+            }
+
+            $parts = explode(':', $header);
+
+            if (!$parts) {
+                return null;
+            }
+
+            return trim($parts[1]);
+        }
+
+        return null;
     }
 }
